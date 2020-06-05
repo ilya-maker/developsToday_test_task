@@ -6,7 +6,20 @@ export const getPosts = async () => {
     const result = await axios.get(`${API_URL}/posts`);
 
     return result.data;
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   }
 }
+
+export const sendPost = async (postTitle: string, postBody: string) => {
+  try {
+    axios.delete
+    return axios.post(`${API_URL}/posts`, { 
+      title: postTitle,
+      body: postBody,
+     })
+     .then(() => getPosts());
+  } catch (error) {
+    throw `Ooooops, sorry: ${error}`;
+  };
+};

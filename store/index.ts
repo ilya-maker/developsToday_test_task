@@ -8,7 +8,6 @@ import postReducer from './posts';
 import { Dispatch } from 'react';
 import { setPosts } from './actionTypes';
 
-
 const rootReducer = combineReducers({
   posts: postReducer,
 })
@@ -30,12 +29,13 @@ export const newestPosts = createSelector(
   getPosts,
 
   (posts: Post[]) => {
-    return posts
+    return [...posts]
       .sort((a: Post, b: Post) => b.id - a.id)
       .slice(0, 10);
   }
-)
+);
 
-const makeStore: MakeStore<RootState> = (context: Context) => createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const makeStore: MakeStore<RootState> =
+  () => createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export const wrapper = createWrapper<RootState>(makeStore, { debug: true });

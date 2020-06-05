@@ -65,6 +65,15 @@ export const Header = () => {
                   )}
               </Link>
             </li>
+            <li>
+              <Link href="/posts/new">
+                {router.pathname === '/posts/new' ? (
+                  <ActiveLink>Create post</ActiveLink>
+                ) : (
+                    <DefaultLink>Create posts</DefaultLink>
+                  )}
+              </Link>
+            </li>
           </Ul>
         </nav>
       </HeaderBlock>

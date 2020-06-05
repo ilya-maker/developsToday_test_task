@@ -1,15 +1,13 @@
 import { Header } from "../Layout/Header/Header"
 import { Footer } from "../Layout/Footer/Footer"
 import { wrapper, getPostsFromAPI } from '../store';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 const Container = styled.div`
     min-height: calc(100vh - 4rem - 3rem);
 `;
-
-const theme = {};
 
 const MainLayout = (props) => {
   const dispatch = useDispatch();
@@ -20,13 +18,11 @@ const MainLayout = (props) => {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Header />
-        <Container>
-          {props.children}
-        </Container>
-        <Footer />
-      </ThemeProvider>
+      <Header />
+      <Container>
+        {props.children}
+      </Container>
+      <Footer />
       <style jsx global>{`
         html {
           font-size: 16px;

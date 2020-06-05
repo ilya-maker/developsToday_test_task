@@ -6,7 +6,7 @@ const PostWrapp = styled.div`
   width: 80vw;
   border: 1px solid grey;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 1rem;
   margin 20px auto 0;
 `;
 
@@ -18,6 +18,7 @@ const SpanTitle = styled.span`
 const CommentDescr = styled.span`
   font-weight: bold;
   font-size: 1rem;
+  padding-left: 1rem;
 `;
 
 const Li = styled.li`
@@ -38,7 +39,7 @@ const PostPage = props => {
             <ul>
               {currentPost.comments.map(comment => (
                 <Li>
-                  <p><CommentDescr>Description:</CommentDescr> {comment.body}</p>
+                  <p><CommentDescr>-</CommentDescr> {comment.body}</p>
                 </Li>
               ))}
             </ul>
