@@ -1,3 +1,4 @@
+import React from 'react';
 import MainLayout from '../MainLayout';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -70,10 +71,12 @@ const newPost = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (postTitle.trim() && postTitle.length >= 3
-      && postBody.trim() && postBody.length >= 3) {
+    if (postTitle.trim() 
+      && postTitle.length >= 3
+      && postBody.trim() 
+      && postBody.length >= 3) {
       sendPost(postTitle, postBody)
-        .then(response => dispatch(setPosts(response)))
+      .then((posts) => dispatch(setPosts(posts)));
 
       setPostTitle('');
       setPostBody('');
@@ -89,7 +92,7 @@ const newPost = () => {
     } else {
       setErrorMessage('body');
     }
-  }
+  };
 
   return (
     <MainLayout>
@@ -99,7 +102,7 @@ const newPost = () => {
             type="text"
             placeholder="Write a title of new post"
             value={postTitle}
-            onChange={e => {
+            onChange={(e) => {
               setPostTitle(e.target.value);
               setErrorMessage('');
             }}
@@ -109,16 +112,13 @@ const newPost = () => {
           <Textarea
             placeholder="Write a body of new post"
             value={postBody}
-            onChange={e => {
+            onChange={(e) => {
               setPostBody(e.target.value);
               setErrorMessage('');
             }}
           ></Textarea>
         </Label>
-        <Button
-          type="submit"
-          onClick={handleSubmit}
-        >
+        <Button type="submit" onClick={handleSubmit}>
           Send
         </Button>
         {errorMessage && (
@@ -128,7 +128,7 @@ const newPost = () => {
         )}
       </Form>
     </MainLayout>
-  )
-}
+  );
+};
 
 export default wrapper.withRedux(newPost);

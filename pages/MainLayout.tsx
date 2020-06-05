@@ -1,15 +1,20 @@
-import { Header } from "../Layout/Header/Header"
-import { Footer } from "../Layout/Footer/Footer"
+import React from 'react';
+import { Header } from '../Layout/Header/Header';
+import { Footer } from '../Layout/Footer/Footer';
 import { wrapper, getPostsFromAPI } from '../store';
 import styled from 'styled-components';
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const Container = styled.div`
-    min-height: calc(100vh - 4rem - 3rem);
+  min-height: calc(100vh - 4rem - 3rem);
 `;
 
-const MainLayout = (props) => {
+interface Props {
+  children: JSX.Element;
+}
+
+const MainLayout = ({ children }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,14 +24,12 @@ const MainLayout = (props) => {
   return (
     <>
       <Header />
-      <Container>
-        {props.children}
-      </Container>
+      <Container>{children}</Container>
       <Footer />
       <style jsx global>{`
         html {
           font-size: 16px;
-          font-family: "Gill Sans", sans-serif;
+          font-family: 'Gill Sans', sans-serif;
         }
 
         html,

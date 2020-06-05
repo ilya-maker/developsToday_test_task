@@ -4,12 +4,12 @@
 interface Post {
   id: number;
   title: string;
-  body: string;
+  body?: string;
   comments?: Comment[];
 }
 
 interface Comment {
-  id: number;
+  postId: number;
   title: string;
   body: string;
 }

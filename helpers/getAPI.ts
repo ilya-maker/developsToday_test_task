@@ -21,5 +21,5 @@ export const sendPost = async (postTitle: string, postBody: string) => {
      .then(() => getPosts());
   } catch (error) {
     throw `Ooooops, sorry: ${error}`;
-  };
+  }
 };
