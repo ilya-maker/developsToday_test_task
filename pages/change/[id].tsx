@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MainLayout from '../MainLayout';
 import styled from 'styled-components';
 import { NextPageContext } from 'next';
-import { changePost } from '../../helpers/getAPI';
+import { changePost } from '../../helpers/api';
 import Router from 'next/router';
 
 interface Props {

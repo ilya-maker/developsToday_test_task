@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-
+import DeletePost from '../components/DeletePost';
 const Li = styled.li`
   box-sizing: border-box;
   box-shadow: 3px -2px 17px -1px rgba(158, 153, 153, 1);
@@ -25,7 +25,7 @@ const PostTitle = styled.p`
 
 const EditContainer = styled.div`
   position: absolute;
-  right: 5rem;
+  right: 2.5rem;
   transition: all 0.5s;
   bottom: 1px;
 
@@ -57,6 +57,7 @@ const PostsList = ({ posts }: Props): JSX.Element => {
       {posts.map((post) => (
         <Link href="/posts/[id]" as={`/posts/${post.id}`} key={post.id}>
           <Li>
+            <DeletePost id={post.id} path="trash.svg" />
             <PostLink>
               <PostTitle>{post.title}</PostTitle>
               <PostBody>{post.body}</PostBody>

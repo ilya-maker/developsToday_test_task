@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '../MainLayout';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { sendPost } from '../../helpers/getAPI';
+import { sendPost } from '../../helpers/api';
 import Router from 'next/router';
 
 const Form = styled.form`

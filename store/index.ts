@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { MakeStore, createWrapper } from 'next-redux-wrapper';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import * as api from '../helpers/getAPI';
+import * as api from '../helpers/api';
 import { createSelector } from 'reselect';
 import postReducer from './posts';
 import { Dispatch } from 'react';
