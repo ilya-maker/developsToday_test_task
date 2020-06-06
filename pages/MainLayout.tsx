@@ -12,7 +12,7 @@ const Container = styled.div`
 
 interface Props {
   children: JSX.Element;
-  title: string;
+  title?: string;
 }
 
 const MainLayout = ({ children, title }: Props) => {
@@ -55,4 +55,4 @@ const MainLayout = ({ children, title }: Props) => {
   );
 };
 
-export default wrapper.withRedux(MainLayout);
+export default wrapper.withRedux(MainLayout) as Function;
