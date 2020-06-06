@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[DEMO](https://develops-today-test-task-puce.now.sh/)
 
 ## NEXT.js + SSR + Ract
 
@@ -15,13 +15,13 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Task description
-Functional requirements
+__Functional requirements__ 
 - The blog should have Latest Posts page (`/` route)
 - The blog should have Post page (`/posts/:postId` route)
 - The blog should have Create Post page (`/posts/new` route)
 - User should be able to create a new post
 
-Tech requirements
+**Tech requirements**
 
 - Code should be written with TypeScript
 - [ESLint and Prettier](https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb) setup for code linting
@@ -34,10 +34,10 @@ Tech requirements
 - Use functional programming if you are know-how. [Ramda.js](http://ramdajs.com/) or [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide) is plus to your score
 - Deploy the app to any free hosting for review. This item is optional, but nice to have :)
 
-API
+__API__
 
 To persist data and work with real API, we're going to use simple Node.js API created in a few minutes. API hosted in the cloud and you can query it from anywhere. API endpoints documentation: [https://documenter.getpostman.com/view/1917440/RzteTChV](https://documenter.getpostman.com/view/1917440/RzteTChV)
 
-Design
+__Design__
 
 The design is up to you. Simple, minimalistic and clean would be nice. As a general example check [Ghost standard UI](https://blog.ghost.org/).
