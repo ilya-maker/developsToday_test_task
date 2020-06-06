@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { deletePost } from '../helpers/api';
-import Router from 'next/router';
 import { setPosts } from '../store/actionTypes';
 import { useDispatch } from 'react-redux';
 import { wrapper } from '../store';
@@ -45,4 +44,4 @@ const DeletePost = ({ id, path }: Props): JSX.Element => {
   );
 };
 
-export default wrapper.withRedux(DeletePost);
+export default wrapper.withRedux(DeletePost) as Function;
