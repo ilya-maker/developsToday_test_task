@@ -2,6 +2,7 @@ import React from 'react';
 import MainLayout from '../MainLayout';
 import styled from 'styled-components';
 import { NextPageContext } from 'next';
+
 const PostWrapp = styled.div`
   width: 80vw;
   box-shadow: 3px -2px 17px -1px rgba(158,153,153,1);
@@ -30,7 +31,7 @@ interface Props {
 }
 
 const PostPage = ({ postData }: Props): JSX.Element => (
-  <MainLayout>
+  <MainLayout title={postData.title}>
     <PostWrapp>
       <p>
         <SpanTitle>Title:</SpanTitle> {postData.title}

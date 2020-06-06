@@ -8,7 +8,7 @@ const AllPosts = () => {
   const posts: Post[] = useSelector(allPosts);
 
   return (
-    <MainLayout>
+    <MainLayout title="All posts">
       <PostsList posts={posts} />
     </MainLayout>
   );

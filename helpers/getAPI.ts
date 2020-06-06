@@ -11,9 +11,8 @@ export const getPosts = async () => {
   }
 }
 
-export const sendPost = async (postTitle: string, postBody: string) => {
+export const sendPost = async (postTitle: string, postBody: string): Promise<Post[]> => {
   try {
-    axios.delete
     return axios.post(`${API_URL}/posts`, { 
       title: postTitle,
       body: postBody,
@@ -23,3 +22,15 @@ export const sendPost = async (postTitle: string, postBody: string) => {
     throw `Ooooops, sorry: ${error}`;
   }
 };
+
+export const changePost = async (postTitle: string, postBody: string, id: number): Promise<Post[]> => {
+  try {
+    return axios.put(`${API_URL}/posts/${id}`, { 
+      title: postTitle,
+      body: postBody,
+     })
+     .then(() => getPosts());
+  } catch (error) {
+    throw `Ooooops, sorry: ${error}`;
+  }
+}

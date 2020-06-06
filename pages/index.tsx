@@ -8,7 +8,7 @@ const Home = () => {
   const posts = useSelector(newestPosts);
 
   return (
-      <MainLayout>
+      <MainLayout title="New posts">
         <PostsList posts={posts} />
       </MainLayout>
   );

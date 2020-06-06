@@ -3,9 +3,7 @@ import MainLayout from '../MainLayout';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { sendPost } from '../../helpers/getAPI';
-import { wrapper } from '../../store';
-import { useDispatch } from 'react-redux';
-import { setPosts } from '../../store/actionTypes';
+import Router from 'next/router';
 
 const Form = styled.form`
   display: flex;
@@ -62,11 +60,10 @@ const ErrorSpan = styled.span`
   font-weight: bold;
 `;
 
-const newPost = () => {
+const newPost = (): JSX.Element => {
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,7 +73,7 @@ const newPost = () => {
       && postBody.trim() 
       && postBody.length >= 3) {
       sendPost(postTitle, postBody)
-      .then((posts) => dispatch(setPosts(posts)));
+      .then(() => Router.push('/'));
 
       setPostTitle('');
       setPostBody('');
@@ -95,7 +92,7 @@ const newPost = () => {
   };
 
   return (
-    <MainLayout>
+    <MainLayout title="Create post">
       <Form onSubmit={handleSubmit}>
         <Label>
           <Input
@@ -131,4 +128,4 @@ const newPost = () => {
   );
 };
 
-export default wrapper.withRedux(newPost);
+export default newPost;
