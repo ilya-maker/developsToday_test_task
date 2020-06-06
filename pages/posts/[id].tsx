@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import { NextPageContext } from 'next';
 import DeletePost from '../../components/DeletePost';
 import { sendComment } from '../../helpers/api';
-import Router from 'next/router';
+
+interface Context extends NextPageContext {
+  id: number;
+}
 
 const PostWrapp = styled.div`
   width: 80vw;
@@ -78,7 +81,6 @@ const PostPage = ({ postData }: Props): JSX.Element => {
     if (comment.trim() && comment.length > 3) {
       sendComment(postData.id, comment);
       setComment('');
-      Router.reload();
     } else {
       setErrorMessage(true);
     }
@@ -135,9 +137,7 @@ const PostPage = ({ postData }: Props): JSX.Element => {
   );
 };
 
-interface Context extends NextPageContext {
-  id: number;
-}
+
 
 PostPage.getInitialProps = async (context: Context) => {
   const { id } = context.query;
@@ -145,7 +145,7 @@ PostPage.getInitialProps = async (context: Context) => {
   const preparedData = await fetch(`${API_URL}${id}?_embed=comments`);
   const json = await preparedData.json();
 
-  return { postData: json };
+  return { postData: json, context };
 };
 
 export default PostPage;

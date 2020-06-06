@@ -64,7 +64,7 @@ export const changePost = async (
   }
 };
 
-export const deletePost = async (id: number): Promise<Post[]> => {
+export const deletePost = async (id: number) => {
   const requestOptions: RequestConfigModern = {
     method: 'DELETE',
     redirect: 'follow',

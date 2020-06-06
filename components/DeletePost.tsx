@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { deletePost } from '../helpers/api';
 import Router from 'next/router';
+import { setPosts } from '../store/actionTypes';
+import { useDispatch } from 'react-redux';
+import { wrapper } from '../store';
 
 const DeletePostLabel = styled.label`
   background-color: lightred;
@@ -29,9 +32,10 @@ interface Props {
 }
 
 const DeletePost = ({ id, path }: Props): JSX.Element => {
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    deletePost(id).then(() => Router.push('/'));
+    deletePost(id).then((data) => dispatch(setPosts(data)));
   };
 
   return (
@@ -41,4 +45,4 @@ const DeletePost = ({ id, path }: Props): JSX.Element => {
   );
 };
 
-export default DeletePost;
+export default wrapper.withRedux(DeletePost);
