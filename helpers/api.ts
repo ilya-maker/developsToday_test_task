@@ -82,7 +82,7 @@ export const deletePost = async (id: number) => {
 export const sendComment = async (
   postId: number,
   postBody: string,
-): Promise<Post[]> => {
+) => {
   const requestOptions: RequestConfigModern = {
     method: 'POST',
     redirect: 'follow',

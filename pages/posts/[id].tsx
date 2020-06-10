@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import { NextPageContext } from 'next';
 import DeletePost from '../../components/DeletePost';
 import { sendComment } from '../../helpers/api';
+import Router from 'next/router';
+import PostBody from '../../components/PostBody';
+import Comment from '../../components/Comments';
 
 interface Context extends NextPageContext {
   id: number;
@@ -16,25 +19,6 @@ const PostWrapp = styled.div`
   padding: 1rem;
   margin 20px auto 0;
   position: relative;
-`;
-
-const SpanTitle = styled.span`
-  font-weight: bold;
-  font-size: 1.5rem;
-`;
-
-const CommentDescr = styled.span`
-  font-weight: bold;
-  font-size: 1rem;
-  padding-left: 1rem;
-`;
-
-const CommentParagraph = styled.p`
-  margin-top: 1rem;
-`;
-
-const Li = styled.li`
-  list-style-type: none;
 `;
 
 const CommentsInput = styled.input`
@@ -79,8 +63,9 @@ const PostPage = ({ postData }: Props): JSX.Element => {
 
   const handleSendComment = () => {
     if (comment.trim() && comment.length > 3) {
-      sendComment(postData.id, comment);
-      setComment('');
+      sendComment(postData.id, comment)
+        .then(() => setComment(''))
+        .then(() => Router.reload());
     } else {
       setErrorMessage(true);
     }
@@ -90,12 +75,7 @@ const PostPage = ({ postData }: Props): JSX.Element => {
     <MainLayout title={postData.title}>
       <PostWrapp>
         <DeletePost id={postData.id} path="/trash.svg" />
-        <p>
-          <SpanTitle>Title:</SpanTitle> {postData.title}
-        </p>
-        <p>
-          <SpanTitle>Post description:</SpanTitle> {postData.body}
-        </p>
+        <PostBody title={postData.title} body={postData.body} />
         <label>
           <CommentP>Write a comment:</CommentP>
           <CommentsInput
@@ -117,20 +97,7 @@ const PostPage = ({ postData }: Props): JSX.Element => {
           <ErrorMessage>Please, write correctly comment</ErrorMessage>
         )}
         {postData.comments.length > 0 && (
-          <>
-            <CommentParagraph>
-              <SpanTitle>Comments:</SpanTitle>
-            </CommentParagraph>
-            <ul>
-              {postData.comments.map((comment) => (
-                <Li key={comment.postId}>
-                  <p>
-                    <CommentDescr>-</CommentDescr> {comment.body}
-                  </p>
-                </Li>
-              ))}
-            </ul>
-          </>
+          <Comment comments={postData.comments} />
         )}
       </PostWrapp>
     </MainLayout>
@@ -145,7 +112,7 @@ PostPage.getInitialProps = async (context: Context) => {
   const preparedData = await fetch(`${API_URL}${id}?_embed=comments`);
   const json = await preparedData.json();
 
-  return { postData: json, context };
+  return { postData: json };
 };
 
 export default PostPage;
